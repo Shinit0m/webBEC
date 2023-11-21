@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    background-color: rgb(49, 49, 49);
+    color: whitesmoke;
+}
+.card {
+    background-color: rgb(49, 49, 49);
+    color: whitesmoke;
+    margin: auto;
+    margin-bottom: 10px;
+    border-color: rgb(49, 49, 49);
+}

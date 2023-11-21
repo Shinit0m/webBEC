@@ -1,0 +1,18 @@
+<div class="container-fluid text-center" *ngIf="genero">
+    <div class="row">
+        <div class="col-md-2 col-sm-3 col-xs-6" *ngFor="let juego of juegos" style="margin-bottom: 15px;">
+            <a [routerLink]="['/juegos/']+juego.titulo">
+                <img class="img-fluid" src={{juego.imagen}}/>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="container-fluid text-center" *ngIf="consola">
+    <div class="row">
+        <div class="col-md-2 col-sm-3 col-xs-6" *ngFor="let juego of juegoCon" style="margin-bottom: 15px;">
+            <a [routerLink]="['/juegos/']+juego.titulo">
+                <img class="img-fluid" src={{juego.imagen}}/>
+            </a>
+        </div>
+    </div>
+</div>

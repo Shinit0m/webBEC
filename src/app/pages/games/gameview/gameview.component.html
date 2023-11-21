@@ -1,0 +1,12 @@
+<div *ngFor="let juego of juegos">
+      <div class="row">
+        <div class="col-md-3 col-xs-12">
+          <img [src]="juego.imagen" class="img-responsive mt-4">
+        </div>
+        <div class="col-md-6 col-xs-12">
+          <h1>{{juego.titulo | uppercase}}</h1>
+          <p>{{juego.descripcion}}</p>
+        </div>
+    </div>
+</div>
+<app-comentarios></app-comentarios>

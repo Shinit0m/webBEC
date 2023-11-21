@@ -1,0 +1,8 @@
+<div class="row">
+    <div class="card" style="width: 25rem;" *ngFor="let route of routes">
+        <img src="{{route.imagenUrl}}" class="card-img-top" alt="">
+        <div class="card-body">
+        <div class="d-grid"><button [routerLink]="[route.path]" style="background-color:rgb(106, 42, 165); border-color: rgb(106, 42, 165);" class="btn btn-primary">{{route.nombre}}</button></div>
+        </div>
+    </div>
+</div>
