@@ -1,0 +1,34 @@
+<div class="col-md-13 col-md-offset-1">
+    <div class="table-responsive">
+        <h2>Lista de juegos para Administrador</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Imagen</th>
+                    <th>Titulo</th>
+                    <th>Descripcion</th>
+                    <th>Accion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let juego of juegos">
+                    <td><img src="{{juego.imagen}}" width="200"/></td>
+                    <td>{{juego.titulo}}</td>
+                    <td>{{juego.descripcion}}</td>
+                    <td class="text-right">
+                        <div>
+                            <button class="btn btn-danger" (click)="BorrarJuego(juego.titulo)">Borrar</button>
+                            <button class="btn btn-warning" [routerLink]="['editar/']+juego.titulo" (click)="onSelect(juego)">Editar</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="col-md-10 col-md-offset-1">
+    <div>
+        <a [routerLink]="['home']" class="btn btn-default" style="background-color: aquamarine;">Volver</a>
+        <a [routerLink]="['crear']" class="btn btn-success">Nuevo juego</a>
+    </div>
+</div>

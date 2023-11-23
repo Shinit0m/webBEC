@@ -1,22 +1,33 @@
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
 import { SupabaseClient, createClient } from '@supabase/supabase-js';
-import { Cuentas } from 'src/app/models/cuentas';
+import { Subject } from 'rxjs/internal/Subject';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CuentasService {
   private supabase: SupabaseClient;
+  private sesion!: boolean;
+  sesionUpdated = new Subject<boolean>();
+  private _currentUser!: string;
+  user = new Subject<string>();
+  private _admin: any[] = [];
   constructor() { 
     this.supabase = createClient(environment.supabaseUrl, environment.supabaseKey);
   }
+  
   async GetUsuarios(usuario: string){
     const cuentas = await this.supabase
     .from('Cuentas')
     .select()
     .eq('Usuarios', usuario)
-
+    return cuentas.data || [];
+  }
+  async GetCuentas(){
+    const cuentas = await this.supabase
+    .from('Cuentas')
+    .select("*")
     return cuentas.data || [];
   }
 
@@ -28,5 +39,18 @@ export class CuentasService {
   ])
   .select()
   }
-
+  getSesion(){
+    return this.sesion;
+  }
+  setSesion(iniciar: boolean){
+    this.sesion = iniciar;
+    this.sesionUpdated.next(this.sesion);
+  }
+  get_currentUser(){
+    return this._currentUser;
+  }
+  set_currentUser(nombre:string){
+    this._currentUser = nombre
+    this.user.next(this._currentUser);
+  }
 }

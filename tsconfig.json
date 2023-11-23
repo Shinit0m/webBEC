@@ -8,6 +8,8 @@
       "@auth/*": ["src/app/pages/auth/*"],
       "@shared/*": ["src/app/shared/*"],
       "@env/*": ["src/environments/*"],
+      "@comments/*" : ["src/app/pages/comments/*"],
+      "@admin/*": ["src/app/admin/*"]
     },
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",

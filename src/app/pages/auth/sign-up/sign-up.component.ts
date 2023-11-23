@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CuentasService } from '@auth/services/cuentas.service';
+import { CommentsService } from '@comments/comments.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -31,5 +32,6 @@ export class SignUpComponent implements OnInit{
   async Registrar(){
     const formulario = this.formularioLogin.value;
     await this.supabase.addUsuarios(formulario.nombre, formulario.email, formulario.password);
+    this.router.navigate(['/login']);
   }
 }

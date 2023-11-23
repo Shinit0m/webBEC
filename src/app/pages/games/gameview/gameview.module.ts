@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { GameviewRoutingModule } from './gameview-routing.module';
 import { GameviewComponent } from './gameview.component';
 import { CategoriasModule } from '@games/categorias/categorias.module';
-import { ComentariosModule } from '@shared/comentarios/comentarios.module';
+import { CommentsModule } from '@comments/comments.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +14,7 @@ import { ComentariosModule } from '@shared/comentarios/comentarios.module';
     CommonModule,
     GameviewRoutingModule,
     CategoriasModule,
-    ComentariosModule
+    CommentsModule
   ]
 })
 export class GameviewModule { }

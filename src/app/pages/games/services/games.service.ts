@@ -34,4 +34,36 @@ export class GamesService {
   return juegos.data || [];
    }
 
+   async updateJuego(nombre: string, descripcion: string, imagen: string, categorias: string, consolas: any[]){
+    const { data, error } = await this.supabase
+  .from('Juegos')
+  .update({
+    descripcion: descripcion,
+    imagen: imagen,
+    categorias: categorias,
+    consola: consolas,
+  })
+  .eq('titulo', nombre)
+  .select()
+   }
+
+   async CreateJuego(nombre: string, descripcion: string, imagen: string, categorias: string, consolas: any[]){
+    const { data, error } = await this.supabase
+      .from('Juegos')
+      .insert({
+        titulo: nombre,
+        descripcion: descripcion,
+        imagen: imagen,
+        categorias: categorias,
+        consola: consolas,
+    })
+  .select()
+   }
+
+   async DeleteJuego(nombre: string){
+    const { error } = await this.supabase
+  .from('Juegos')
+  .delete()
+  .eq('titulo', nombre)
+   }
 }

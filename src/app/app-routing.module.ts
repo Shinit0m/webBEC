@@ -34,6 +34,8 @@ const routes: Routes = [
   { path: 'juegos/:nombre', loadChildren: () => import('./pages/games/gameview/gameview.module').then(m => m.GameviewModule) },
   { path: 'sign-up', loadChildren: () => import('./pages/auth/sign-up/sign-up.module').then(m => m.SignUpModule) },
   { path: 'login', loadChildren: () => import('./pages/auth/login/login.module').then(m => m.LoginModule) },
+  { path: 'comments', loadChildren: () => import('./pages/comments/comments.module').then(m => m.CommentsModule) },
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
   { path: '**', redirectTo:'/home', pathMatch:'full'}
 ];
 

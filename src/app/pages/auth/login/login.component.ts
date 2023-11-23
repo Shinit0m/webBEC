@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CuentasService } from '@auth/services/cuentas.service';
+import { CommentsService } from '@comments/comments.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit{
   formularioLogin!: FormGroup;
   usuarios: any[] = []
 
-  constructor(private formBuilder: FormBuilder, private router:Router, private supabase:CuentasService){}
+  constructor(private formBuilder: FormBuilder, private router:Router, private supabase:CuentasService, private comment: CommentsService){}
 
   private initForm(): void{
     this.formularioLogin = this.formBuilder.group({
@@ -33,8 +34,10 @@ export class LoginComponent implements OnInit{
     this.usuarios = await this.supabase.GetUsuarios(formulario.nombre);
     for(let usuario of this.usuarios){
       if(usuario.Usuarios === formulario.nombre && usuario.Password === formulario.password){
+        console.log('Encontro usuario');
+        this.supabase.setSesion(true);
+        this.supabase.set_currentUser(formulario.nombre);
         this.router.navigate(['home']);
-        console.log('Encontro usuario')
       }else{
         console.log('No encontro usuario', usuario);
       }

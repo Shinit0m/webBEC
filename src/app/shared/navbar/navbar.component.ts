@@ -14,18 +14,29 @@ export class NavbarComponent{
   buscar!: string;
   encontrado!: boolean;
   session!: boolean;
+  user!: string;
+  adminAux: any[] = [];
+  admin: any;
 
-constructor(private busqueda:SearchService, private router: Router, private route:ActivatedRoute){
-  
+constructor(private busqueda:SearchService, private router: Router, private route:ActivatedRoute, private sesion: CuentasService){
+  this.session = this.sesion.getSesion();
 }
   async ngOnInit(){
     this.juegos = await this.busqueda.buscarJuego();
+    this.session = this.sesion.getSesion();
+    this.sesion.sesionUpdated.subscribe((sesion) => {
+      this.session = sesion;
+    });
+    this.user = this.sesion.get_currentUser();
+    this.sesion.user.subscribe((_currentUser) =>
+    {this.user = _currentUser;
+    });
   }
-  Iniciar_Sesion(){
-    this.session = false;
-  }
+
   Cerrar_Sesion(){
-    this.session = true;
+    this.sesion.setSesion(false);
+    this.session = this.sesion.getSesion();
+    console.log('Sesion cerrada');
   }
   Buscar(){
     if(this.searchQuery.trim() !== ''){
